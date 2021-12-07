@@ -1,10 +1,10 @@
-package com.example.movieinfo.data.remote.dto_search_response
+package com.example.movieinfo.data.remote.dto_title_response
 
 
-import com.example.movieinfo.domain.model.MovieSearch
+import com.example.movieinfo.domain.model.MovieSearchByTitle
 import com.google.gson.annotations.SerializedName
 
-data class DtoMovieSearchByName(
+data class DtoMovieSearchByTitle(
     @SerializedName("Actors")
     val actors: String = "",
     @SerializedName("Awards")
@@ -57,7 +57,7 @@ data class DtoMovieSearchByName(
     val year: String = ""
 )
 
-fun DtoMovieSearchByName.toMovieSearch(): MovieSearch = MovieSearch(
+fun DtoMovieSearchByTitle.toMovieSearch(): MovieSearchByTitle = MovieSearchByTitle(
     title = title,
     year = year,
     released = released,
@@ -72,5 +72,6 @@ fun DtoMovieSearchByName.toMovieSearch(): MovieSearch = MovieSearch(
     awards = awards,
     imdbRating = imdbRating,
     type = type,
-    boxOffice = boxOffice
+    boxOffice = boxOffice,
+    poster = poster
 )

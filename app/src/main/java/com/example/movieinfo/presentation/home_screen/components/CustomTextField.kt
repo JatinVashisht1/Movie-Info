@@ -39,7 +39,7 @@ fun CustomTextField(
         keyboardActions = KeyboardActions(
             onSearch = {
                 CoroutineScope(IO).launch {
-                    viewModel.getMovieResult(name = text.trim())
+                    viewModel.getMovieName(name = text.trim())
                 }
                 keyboardController?.hide()
             }

@@ -1,4 +1,4 @@
-package com.example.movieinfo.data.remote.dto_search_response
+package com.example.movieinfo.data.remote.dto_title_response
 
 
 import com.google.gson.annotations.SerializedName

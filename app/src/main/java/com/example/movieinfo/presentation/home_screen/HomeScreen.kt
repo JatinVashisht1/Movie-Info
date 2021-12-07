@@ -10,34 +10,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.example.movieinfo.presentation.home_screen.components.CustomTextField
+import com.example.movieinfo.presentation.home_screen.components.ListMovieSearchByName
 
 @ExperimentalComposeUiApi
 @Composable
 fun HomeScreen(
-    viewModel: HomeScreenViewModel = hiltViewModel()
+    viewModel: HomeScreenViewModel = hiltViewModel(),
+    navController: NavHostController
 ) {
-    val result = viewModel.result.value
+    val result = viewModel.resultByTitle.value
     val text = viewModel.searchTerm.value
-    Column(
+
+    val titleResult = viewModel.resultByName.value
+
+    Box(
         modifier = Modifier
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+            .fillMaxSize()
     ) {
-
-        CustomTextField(text = text,modifier = Modifier.fillMaxWidth(), viewModel = viewModel){
-            viewModel.searchTerm.value = it
+        if (titleResult.error.isNotBlank()) {
+            Text(
+                text = result.error,
+                modifier = Modifier.align(Alignment.Center),
+                color = Color.Red
+            )
+        }
+        if (titleResult.isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            CustomTextField(
+                text = text,
+                modifier = Modifier.fillMaxWidth(),
+                viewModel = viewModel
+            ) {
+                viewModel.searchTerm.value = it
+            }
+            if (titleResult.isLoaded) {
+                ListMovieSearchByName(
+                    movieSearchList = titleResult.movieByName,
+                    navController = navController
+                )
+            }
         }
 
-        if(result.error.isNotBlank()){
-            Text(text = result.error, modifier = Modifier.align(Alignment.CenterHorizontally), color = Color.Red)
-        }
-        if(result.isLoading){
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-        }
-        Text(result.news.plot, modifier = Modifier
-            .align(Alignment.Start)
-            .padding(8.dp)
-        )
     }
 }

@@ -1,6 +1,6 @@
 package com.example.movieinfo.domain.model
 
-data class MovieSearch(
+data class MovieSearchByTitle(
     val title: String = "",
     val year: String = "",
     val released: String = "",
@@ -15,5 +15,6 @@ data class MovieSearch(
     val awards: String = "",
     val imdbRating: String = "",
     val type: String = "",
-    val boxOffice: String = ""
+    val boxOffice: String = "",
+    val poster: String = ""
 )
