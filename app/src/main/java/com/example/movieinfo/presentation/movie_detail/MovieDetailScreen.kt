@@ -1,5 +1,6 @@
 package com.example.movieinfo.presentation.movie_detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -27,7 +28,10 @@ fun MovieDetailScreen(
     }
     val result = viewModel.resultByTitle.value
     val listState = rememberLazyListState()
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xFF6D4A2A))
+    ) {
         if (result.isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }

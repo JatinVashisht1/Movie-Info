@@ -1,7 +1,9 @@
 package com.example.movieinfo.presentation.home_screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +30,9 @@ fun HomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFF805081))
     ) {
+
         if (titleResult.error.isNotBlank()) {
             Text(
                 text = result.error,

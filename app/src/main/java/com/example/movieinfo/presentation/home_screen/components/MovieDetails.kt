@@ -110,6 +110,25 @@ fun MovieDetails(
                 )
             ) { append(movieSearchByTitle.type) }
         })
+
+        Spacer(modifier = Modifier.padding(8.dp))
+        Text(buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = MaterialTheme.typography.body1.fontSize
+                )
+            ) { append("Language: ") }
+            withStyle(
+                style = SpanStyle(
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = MaterialTheme.typography.body1.fontSize
+                )
+            ) { append(movieSearchByTitle.language) }
+        })
+
         Spacer(modifier = Modifier.padding(8.dp))
         Text(buildAnnotatedString {
             withStyle(
